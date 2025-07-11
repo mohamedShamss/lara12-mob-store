@@ -3,8 +3,15 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+
 Route::get('/', function () {
     return view('welcome');
+    // $role = Role::create(['name' => 'admin']);
+    // $permission = Permission::create(['name' => 'admin']);
+    // $role = Role::create(['name' => 'user']);
+    // $permission = Permission::create(['name' => 'user']);
 });
 
 Route::get('/dashboard', function () {
@@ -17,4 +24,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
