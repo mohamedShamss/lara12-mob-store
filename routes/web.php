@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -7,11 +7,11 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
 Route::get('/', function () {
-    return view('welcome');
-    // $role = Role::create(['name' => 'admin']);
-    // $permission = Permission::create(['name' => 'admin']);
-    // $role = Role::create(['name' => 'user']);
-    // $permission = Permission::create(['name' => 'user']);
+    return redirect()->route('login');
+});
+
+Route::controller(DashboardController::class)->group(function () {
+    Route::any('/admin-login', 'admin_login')->name('admin.login');
 });
 
 Route::get('/dashboard', function () {
